@@ -10,5 +10,5 @@ Python: Code2Xplore – 60 Days Challenge
 
 ## Links:
 
-- Day 1: Challenge Title: [User Profile Validation System](link)
+- Day 1: Challenge Title: [User Profile Validation System]([link](https://github.com/applejuice093/Code2Xplore/blob/main/User%20Profile%20Validation%20System.py))
 
