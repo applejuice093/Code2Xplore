@@ -14,5 +14,5 @@ Python: Code2Xplore – 60 Days Challenge
 - Day 2: Challenge Title: [Smart Registration System](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20Registration%20System.py)
 - Day 3: Challenge Title: [Student Performance Analyzer](https://github.com/applejuice093/Code2Xplore/blob/main/Student%20Performance%20Analyzer.py)
 - Day 4: Challenge Title: [Smart List Filter & Rebuilder](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20List%20Filter%20%26%20Rebuilder.py)
-- Day 5: Challenge Title: [Smart Transport Load Balancing System]()
+- Day 5: Challenge Title: [Smart Transport Load Balancing System](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20Transport%20Load%20Balancing%20System.py)
 
