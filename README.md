@@ -1,8 +1,8 @@
-# 🚀 Code2Xplore – 60 Days Python Challenge
+# Code2Xplore – 60 Days Python Challenge
 
-📍 **Organized by:** Department of Computer Science and Engineering, SRM University–AP  
-🐍 **Tech Stack:** Python  
-🎯 **Goal:** Build real-world problem-solving skills through structured daily projects
+**Organized by:** Department of Computer Science and Engineering, SRM University–AP  
+**Tech Stack:** Python  
+**Goal:** Build real-world problem-solving skills through structured daily projects
 
 ## 📖 Overview
 
