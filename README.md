@@ -42,22 +42,27 @@ are Having Valid marks and total number of students failed.
 ```
 ## Task 4: Smart List Filter & Rebuilder
 ```
-We are given a List which consist Strings as well as integers. We need to separate the combined list into two lists, one will store integers, other will store strings.
+We are given a List which consist Strings as well as integers. We need to separate the combined list into
+two lists, one will store integers, other will store strings.
 We also have to count number of integers and strings in the combined list and give a final summary.
 ```
 ## Task 5: Smart Transport Load Balancing System
 ```
-We have to create a python program which will take multiple weights as input and classify it based on given conditions.
-We also have to apply personalized Rule based on the length of our full name. Also count the number of valid items and items affected by PLI.
+We have to create a python program which will take multiple weights as input and classify it based on given
+conditions. We also have to apply personalized Rule based on the length of our full name.
+Also count the number of valid items and items affected by PLI.
 ```
 ## Task 6: Smart Playlist Intelligence System
 ```
-We are creating a Smart playlist Intelligence System using python programming language. We will accept N number of song durations in a list and categorize them based on song duration and print it also give
-a personalized recommendation based on the category.
+We are creating a Smart playlist Intelligence System using python programming language.
+We will accept N number of song durations in a list and categorize them based on song duration
+and print it also give a personalized recommendation based on the category.
 ```
 ## Task 7: Smart Campus Energy Analyzer
 ```
-We have to design and create a smart campus energy analyser. We have to take integer input which represents the energy usage per building. Then categorize the input(energy units) as per the given conditions, and display a final summary output.
+We have to design and create a smart campus energy analyser. We have to take integer
+input which represents the energy usage per building. Then categorize the input(energy units)
+as per the given conditions, and display a final summary output.
 ```
 
 more tasks will be added soon.....
