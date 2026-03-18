@@ -23,15 +23,22 @@ This repository contains solutions and implementations for the challenge tasks.
 
 ## Task 1: User Profile Validation System
 ```
-  We have to create a python program which will take full name, email, mobile number, and age as inputs from user, and based on the given conditions for each input, we have to determine weather the given input is valid or not.
+We have to create a python program which will take full name, email, mobile number,
+and age as inputs from user, and based on the given conditions for each input,
+we have to determine weather the given input is valid or not.
 ```
 ## Task 2: Smart Registration System
 ```
-  We have to create a python program (Smart Registration System) which will take Student ID, Email ID, Password, Referral Code as inputs from user, and based on the given conditions for each input, we have to determine weather the given input is valid or not.
+We have to create a python program (Smart Registration System) which will take Student ID,
+Email ID, Password, Referral Code as inputs from user, and based on the given conditions for each input,
+we have to determine weather the given input is valid or not.
 ```
 ## Task 3: Student Performance Analyzer
 ```
-We have to make a Student Performance Analyzer for a University, which will validate marks of students and divide them into multiple categories based on marks. If a student scored between 90- 100 then he will be in Excellent Category and so on. We also have to determine how many students are Having Valid marks and total number of students failed.
+We have to make a Student Performance Analyzer for a University, which will validate marks
+of students and divide them into multiple categories based on marks. If a student scored between
+90- 100 then he will be in Excellent Category and so on. We also have to determine how many students
+are Having Valid marks and total number of students failed.
 ```
 ## Task 4: Smart List Filter & Rebuilder
 ```
