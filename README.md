@@ -20,7 +20,7 @@ This repository contains solutions and implementations for the challenge tasks.
 - Day 5: Challenge Title: [Smart Transport Load Balancing System](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20Transport%20Load%20Balancing%20System.py)
 - Day 6: Challenge Title: [Smart Playlist Intelligence System](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20Playlist%20Intelligence%20System.py)
 - Day 7: challenge Title: [Smart Campus Energy Analyzer](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20Campus%20Energy%20Analyzer.py)
-
+- Day 8: Challenge Title: [City Analyzer](https://github.com/applejuice093/Code2Xplore/blob/main/City%20Analyzer.py)
 ## Task 1: User Profile Validation System
 ```
 We have to create a python program which will take full name, email, mobile number,
