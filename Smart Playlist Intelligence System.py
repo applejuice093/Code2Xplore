@@ -1,4 +1,6 @@
 N= int(input("Enter number of songs:"))
+if N <= 0:
+    raise SystemExit("Playlist must contain at least one song.")
 playlist=[0]*N
 
 valid=1
