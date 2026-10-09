@@ -11,11 +11,11 @@ if len(sid) != 7 or not sid.startswith("CSE-") or not sid[4:].isdigit():
 #email validation
 if (not email) or (email[0]=='@') or (email[0]=='.') or (email.count('@') == 0) or (email.count('.') == 0) or (email.count(' ') != 0) or (not email.endswith('.edu')):
     valid=False
-#password vaalidation
+#password validation: >= 8 chars, at least one digit, starts with an uppercase letter
 count=( passwd.count('0') +passwd.count('1') + passwd.count('2') + passwd.count('3') + passwd.count('4') + passwd.count('5') + passwd.count('6') + passwd.count('7') +
        passwd.count('8') +passwd.count('9')
        )
-if(len(passwd)<8) or (count<1) or ('Z' < passwd[0] < 'A'):
+if(len(passwd)<8) or (count<1) or (not passwd[0].isupper()):
     valid=False
 #referral rules
 if (ref[:3]!="REF") or (not ref[3].isdigit()) or (not ref[4].isdigit()) or (ref[ref.count("")-2]!='@'):
