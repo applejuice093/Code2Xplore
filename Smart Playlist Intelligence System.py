@@ -3,7 +3,7 @@ playlist=[0]*N
 
 valid=1
 for i in range(N):
-    playlist[i]=int(input(f"Enter Song {i+1} dutation(in seconds):"))
+    playlist[i]=int(input(f"Enter Song {i+1} duration(in seconds):"))
     if(playlist[i]<=0):
         valid=0
         break
@@ -13,7 +13,7 @@ if(valid):
     repeat=0
     duration_deviation=1
     category=""
-    recommedation=""
+    recommendation=""
     playlist.sort()
     for i in range(N):
         total_duration +=playlist[i]
@@ -26,24 +26,24 @@ if(valid):
 
     if(total_duration<300) and not repeat:
         category="Too Short Playlist"
-        recommedation="Add more songs"
+        recommendation="Add more songs"
     elif(total_duration>3600 and not repeat):
         category="Too Long Playlist"
-        recommedation="Too long, better remove some Songs"
+        recommendation="Too long, better remove some Songs"
     elif(repeat):
         category="Repetitive Playlist"
-        recommedation="Add variotion in playlist"
+        recommendation="Add variation in playlist"
     elif(duration_deviation):
         category="Balanced Playlist"
-        recommedation="Good Listing session"
+        recommendation="Good listening session"
     else:
         category="Irregular Playlist"
-        recommedation="Unique Taste"
+        recommendation="Unique Taste"
     
     print("Total Duration:",total_duration)
     print("Number of songs:",N)
     print("Detected category:",category)
-    print("Recommedation:",recommedation)
+    print("Recommendation:",recommendation)
 
 else:
     print("Invalid Song duration")
