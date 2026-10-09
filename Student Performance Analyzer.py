@@ -1,6 +1,6 @@
 admin="Aniket"
-str=str(input("Enter Admin Name:"))
-if str==admin:
+name = input("Enter Admin Name:")
+if name == admin:
     N = int(input("Enter number of Students:"))
     marks = [0] * N
     valid = 0

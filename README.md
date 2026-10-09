@@ -19,19 +19,44 @@ This repository contains solutions and implementations for the challenge tasks.
 - Day 4: Challenge Title: [Smart List Filter & Rebuilder](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20List%20Filter%20%26%20Rebuilder.py)
 - Day 5: Challenge Title: [Smart Transport Load Balancing System](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20Transport%20Load%20Balancing%20System.py)
 - Day 6: Challenge Title: [Smart Playlist Intelligence System](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20Playlist%20Intelligence%20System.py)
-- Day 7: challenge Title: [Smart Campus Energy Analyzer](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20Campus%20Energy%20Analyzer.py)
+- Day 7: Challenge Title: [Smart Campus Energy Analyzer](https://github.com/applejuice093/Code2Xplore/blob/main/Smart%20Campus%20Energy%20Analyzer.py)
 - Day 8: Challenge Title: [City Analyzer](https://github.com/applejuice093/Code2Xplore/blob/main/City%20Analyzer.py)
+- Day 9: Challenge Title: [Multi-Level Data Replication & Integrity Analyzer](https://github.com/applejuice093/Code2Xplore/blob/main/Multi-Level%20Data%20Replication%20%26%20Integrity%20Analyzer.py)
+
+## ▶️ Running the scripts
+
+Requires Python 3.8+. Most scripts use only the standard library and read input interactively:
+
+```bash
+python "Smart Registration System.py"
+```
+
+File names contain spaces, so keep the quotes. `City Analyzer.py` also needs pandas and numpy:
+
+```bash
+pip install -r requirements.txt
+```
+
+## 🧪 Tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+The tests feed sample input to each script and check its output.
+
 ## Task 1: User Profile Validation System
 ```
 We have to create a python program which will take full name, email, mobile number,
 and age as inputs from user, and based on the given conditions for each input,
-we have to determine weather the given input is valid or not.
+we have to determine whether the given input is valid or not.
 ```
 ## Task 2: Smart Registration System
 ```
 We have to create a python program (Smart Registration System) which will take Student ID,
 Email ID, Password, Referral Code as inputs from user, and based on the given conditions for each input,
-we have to determine weather the given input is valid or not.
+we have to determine whether the given input is valid or not.
 ```
 ## Task 3: Student Performance Analyzer
 ```
@@ -64,8 +89,19 @@ We have to design and create a smart campus energy analyser. We have to take int
 input which represents the energy usage per building. Then categorize the input(energy units)
 as per the given conditions, and display a final summary output.
 ```
+## Task 8: City Analyzer
+```
+Simulate traffic, air-quality and energy readings for city zones, classify them into risk
+categories, compute a risk score with pandas/numpy, detect patterns (rising AQI, high-risk
+clusters) and output an overall city decision.
+```
+## Task 9: Multi-Level Data Replication & Integrity Analyzer
+```
+Show the difference between aliasing, shallow copies and deep copies of nested data,
+modify each copy, and report which changes leaked back into the original dataset.
+```
 
-more tasks will be added soon.....
+More tasks will be added soon.
 
 ## 🙌 Acknowledgement
 

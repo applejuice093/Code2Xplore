@@ -1,5 +1,8 @@
 n=int(input("Enter number of buildings:"))
 
+if n <= 0:
+    raise SystemExit("Number of buildings must be at least 1.")
+
 e_usage= [int(input()) for _ in range(n)]
 
 inv_count=0
