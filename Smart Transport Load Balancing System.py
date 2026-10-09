@@ -11,7 +11,7 @@ olcount=0
 Invalid_entries=[0.00]*N
 IEcount=0
 for i in range(N):
-    weight[i]=int(input(f"Enter weight{i+1}:"))
+    weight[i]=int(input(f"Enter weight {i+1}:"))
 for i in range(N):
     if weight[i]<0:
         Invalid_entries[IEcount]=weight[i]
@@ -51,10 +51,11 @@ affected_items=0
 print(f"Name:{name} PLI={PLI} ")
 if(PLI==0):
     print("RULE A")
+    # Rule A: overloaded items are moved to the invalid list.
+    affected_items=olcount
     for i in range(olcount):
         Invalid_entries[IEcount]=overload[i]
         IEcount+=1
-        affected_items=olcount
     olcount=0
 elif(PLI==1):
     print("Rule B")
