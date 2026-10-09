@@ -18,7 +18,8 @@ count=( passwd.count('0') +passwd.count('1') + passwd.count('2') + passwd.count(
 if(len(passwd)<8) or (count<1) or (not passwd[0].isupper()):
     valid=False
 #referral rules
-if (ref[:3]!="REF") or (not ref[3].isdigit()) or (not ref[4].isdigit()) or (ref[ref.count("")-2]!='@'):
+# Referral: REF + two digits ... ending with '@'. Length guard prevents IndexError.
+if len(ref) < 6 or (ref[:3]!="REF") or (not ref[3:5].isdigit()) or (not ref.endswith('@')):
     valid=False
 
 if valid:
