@@ -6,9 +6,9 @@ age=int(input("Age:"))
 valid=True #boolean variable
 
 splitname=fullname.split()
-if (fullname[0]==" ") or (fullname[fullname.count("")-2]==" ") or (len(splitname)<=1): #fullname check
+if (not fullname) or (fullname != fullname.strip()) or (len(splitname)<=1): #fullname check
     valid=False
-elif (email[0]=='@') or (email[0]=='.') or (email.count('@') == 0) or (email.count('.') == 0) or (email.count(' ') != 0):
+elif (not email) or (email[0]=='@') or (email[0]=='.') or (email.count('@') == 0) or (email.count('.') == 0) or (email.count(' ') != 0):
     valid=False
 elif (len(number)!=10) or (not number.isdigit()) or (number[0] =='0'):
     valid=False
