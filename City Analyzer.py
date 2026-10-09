@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 
 def generate_city_data(num_zones=15):
+    """Return random sensor readings (traffic 0-100, AQI 0-300, energy 0-500) for each zone."""
     data = []
     
     for i in range(1, num_zones + 1):
@@ -17,6 +18,7 @@ def generate_city_data(num_zones=15):
     return data
 
 def classify_zones(data):
+    """Group zone ids into risk categories; a zone may appear in more than one."""
     categories = {
         "High Risk": set(),
         "Energy Critical": set(),
@@ -51,6 +53,7 @@ def classify_zones(data):
     return categories
 
 def apply_personalized_rule(data, roll_num):
+    """Shuffle (roll divisible by 3) or bubble-sort by traffic, in place; returns data."""
     if roll_num % 3 == 0:
         print(f"My roll number {roll_num} is divisible by 3, so I will just shuffle the data.\n")
         random.shuffle(data)
@@ -64,6 +67,7 @@ def apply_personalized_rule(data, roll_num):
     return data
 
 def analyze_and_detect_patterns(df):
+    """Compute risk scores, detect patterns, print a report and return the city decision."""
     numeric_matrix = df[['traffic', 'air_quality', 'energy']].to_numpy()
     means = np.mean(numeric_matrix, axis=0)
     
