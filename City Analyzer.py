@@ -83,7 +83,8 @@ def analyze_and_detect_patterns(df):
     max_risk = df['risk_score'].max()
     avg_risk = df['risk_score'].mean()
     min_risk = df['risk_score'].min()
-    risk_stats = (round(max_risk, 2), round(avg_risk, 2), round(min_risk, 2))
+    # float()/int() keep NumPy 2 from printing values as np.float64(...)/np.int64(...).
+    risk_stats = (round(float(max_risk), 2), round(float(avg_risk), 2), round(float(min_risk), 2))
     
     risk_list = df[['zone', 'risk_score']].to_dict('records')
 
@@ -94,7 +95,7 @@ def analyze_and_detect_patterns(df):
                 max_idx = j
         risk_list[i], risk_list[max_idx] = risk_list[max_idx], risk_list[i]
         
-    top_3_zones = [z['zone'] for z in risk_list[:3]]
+    top_3_zones = [int(z['zone']) for z in risk_list[:3]]
 
     df['aqi_rising'] = df['air_quality'].diff() > 0
     multi_factor_zones = df[(df['risk_score'] > avg_risk) & df['aqi_rising']]['zone'].tolist()
@@ -105,7 +106,7 @@ def analyze_and_detect_patterns(df):
     clusters = []
     for i in range(1, len(df)):
         if df.loc[i, 'is_high_risk'] and df.loc[i-1, 'is_high_risk']:
-            clusters.append((df.loc[i-1, 'zone'], df.loc[i, 'zone']))
+            clusters.append((int(df.loc[i-1, 'zone']), int(df.loc[i, 'zone'])))
 
     decision = "City Stable"
     if max_risk > 13 and avg_risk > 10:
