@@ -1,7 +1,9 @@
 fullname=str(input("Full Name:"))
 email=str(input("Email:"))
 number=str(input("Mobile:"))
-age=int(input("Age:"))
+age_text=input("Age:").strip()
+# A non-numeric age makes the profile invalid instead of crashing int().
+age=int(age_text) if age_text.isdigit() else -1
 
 valid=True #boolean variable
 
