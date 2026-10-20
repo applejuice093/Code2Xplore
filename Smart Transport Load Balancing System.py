@@ -61,7 +61,7 @@ PLI=name_length%3
 affected_items=0
 print(f"Name:{name} PLI={PLI} ")
 if(PLI==0):
-    print("RULE A")
+    print("Rule A")
     # Rule A: overloaded items are moved to the invalid list.
     affected_items=olcount
     for i in range(olcount):
