@@ -41,7 +41,7 @@ def modify_data(root, a_db, s_db, d_db, dev, roll):
         
     return root, a_db, s_db, d_db
 
-def check_integrity(pure_db, current_root, s_copy, d_copy):
+def check_integrity(pure_db, current_root, s_copy):
     leak_flags = 0
     secure_flags = 0
     
@@ -49,7 +49,8 @@ def check_integrity(pure_db, current_root, s_copy, d_copy):
         if pure_db[i] != current_root[i]:
             leak_flags += 1
             print(f"WARNING: Corruption at ID {pure_db[i]['id']}")
-        secure_flags += 1 
+        else:
+            secure_flags += 1
 
     root_files = set()
     for item in current_root:
@@ -93,7 +94,7 @@ def main():
     print(" deep copy result:")
     print(f"  {db_deep}")
     print(" integrity report:")
-    final_metrics = check_integrity(db_snapshot, db_original, db_shallow, db_deep)
+    final_metrics = check_integrity(db_snapshot, db_original, db_shallow)
     print(f" tuple -> {final_metrics}")
 
 if __name__ == "__main__":
