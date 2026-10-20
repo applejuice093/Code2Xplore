@@ -1,6 +1,8 @@
+"""Day 9: show how aliasing, shallow copies and deep copies differ for nested data."""
 import copy
 
 def generate_data():
+    """Return a fresh nested dataset: a list of records with inner dicts and file lists."""
     dataset = [
         {"id": 1, 
         "data": {"files": ["a.txt", "b.txt"], "usage": 500}
@@ -12,12 +14,22 @@ def generate_data():
     return dataset
 
 def replicate_data(root_db):
+    """Return (alias, shallow copy, deep copy) of root_db.
+
+    The alias is the same object, the shallow copy is a new outer list that still
+    shares the inner dicts/lists, and the deep copy shares nothing.
+    """
     alias_db = root_db
     shallow_db = copy.copy(root_db)
     deep_db = copy.deepcopy(root_db)
     return alias_db, shallow_db, deep_db
 
 def modify_data(root, a_db, s_db, d_db, dev, roll):
+    """Mutate each copy in place to show which changes leak back into root.
+
+    An odd roll number drops the last file of the first shallow record, an even
+    one appends a new file. Returns the four datasets unchanged in identity.
+    """
     a_db[0]["id"] = 101
     
     s_db.append({
@@ -42,6 +54,11 @@ def modify_data(root, a_db, s_db, d_db, dev, roll):
     return root, a_db, s_db, d_db
 
 def check_integrity(pure_db, current_root, s_copy):
+    """Compare current_root against an untouched snapshot (pure_db).
+
+    Returns (leaked records, secure records, number of file names shared by
+    current_root and the shallow copy).
+    """
     leak_flags = 0
     secure_flags = 0
     
@@ -70,6 +87,7 @@ def check_integrity(pure_db, current_root, s_copy):
     return (leak_flags, secure_flags, overlap_count)
 
 def main():
+    """Run the demo: replicate, modify, then print the integrity report."""
     my_name = "Aniket"
     my_roll = 11701
     
