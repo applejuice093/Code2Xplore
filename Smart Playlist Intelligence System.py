@@ -1,14 +1,20 @@
-N= int(input("Enter number of songs:"))
+count_text = input("Enter number of songs:").strip()
+try:
+    N = int(count_text)
+except ValueError:
+    raise SystemExit(f"Number of songs must be a whole number, got {count_text!r}.")
 if N <= 0:
     raise SystemExit("Playlist must contain at least one song.")
 playlist=[0]*N
 
 valid=1
 for i in range(N):
-    playlist[i]=int(input(f"Enter Song {i+1} duration(in seconds):"))
-    if(playlist[i]<=0):
+    entry=input(f"Enter Song {i+1} duration(in seconds):").strip()
+    # Non-numeric durations are invalid, just like zero or negative ones.
+    if not entry.isdigit() or int(entry)<=0:
         valid=0
         break
+    playlist[i]=int(entry)
 
 if(valid):
     total_duration=0
