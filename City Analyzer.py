@@ -5,6 +5,9 @@ import numpy as np
 
 def generate_city_data(num_zones=15):
     """Return random sensor readings (traffic 0-100, AQI 0-300, energy 0-500) for each zone."""
+    if num_zones < 1:
+        # analyze_and_detect_patterns needs at least one row to compute stats.
+        raise ValueError("num_zones must be at least 1")
     data = []
     
     for i in range(1, num_zones + 1):
