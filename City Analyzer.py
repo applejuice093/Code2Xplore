@@ -78,7 +78,7 @@ def analyze_and_detect_patterns(df):
     print(f"Traffic: {means[0]:.2f}, AQI: {means[1]:.2f}, Energy: {means[2]:.2f}\n")
 
     df['raw_risk'] = (df['traffic'] * 0.4) + (df['air_quality'] * 0.4) + (df['energy'] * 0.2)
-    df['risk_score'] = df['raw_risk'].apply(lambda x: math.sqrt(x))
+    df['risk_score'] = df['raw_risk'].apply(math.sqrt)
     
     max_risk = df['risk_score'].max()
     avg_risk = df['risk_score'].mean()
@@ -97,7 +97,7 @@ def analyze_and_detect_patterns(df):
     top_3_zones = [z['zone'] for z in risk_list[:3]]
 
     df['aqi_rising'] = df['air_quality'].diff() > 0
-    multi_factor_zones = df[(df['risk_score'] > avg_risk) & (df['aqi_rising'] == True)]['zone'].tolist()
+    multi_factor_zones = df[(df['risk_score'] > avg_risk) & df['aqi_rising']]['zone'].tolist()
     
     traffic_variance = np.var(df['traffic'])
     
