@@ -1,9 +1,18 @@
-n=int(input("Enter number of buildings:"))
+def read_int(prompt):
+    """Read a whole number from stdin, exiting with a clear message on bad input."""
+    text = input(prompt).strip()
+    try:
+        return int(text)
+    except ValueError:
+        raise SystemExit(f"Expected a whole number, got {text!r}.")
+
+
+n=read_int("Enter number of buildings:")
 
 if n <= 0:
     raise SystemExit("Number of buildings must be at least 1.")
 
-e_usage= [int(input()) for _ in range(n)]
+e_usage= [read_int(f"Energy usage of building {i+1}:") for i in range(n)]
 
 inv_count=0
 eff_count=0
@@ -25,16 +34,16 @@ total=0
 
 for i in range(n):
     if(e_usage[i]<0): 
-        categorized["invalid"] = categorized["invalid"] + [e_usage[i]]
+        categorized["invalid"].append(e_usage[i])
         inv_count+=1
     elif(0<=e_usage[i]<=50): 
-        categorized["efficient"] = categorized["efficient"] + [e_usage[i]]
+        categorized["efficient"].append(e_usage[i])
         eff_count+=1
     elif(51<=e_usage[i]<=150): 
-        categorized["moderate"] = categorized["moderate"] + [e_usage[i]]
+        categorized["moderate"].append(e_usage[i])
         mod_count+=1
     else: 
-        categorized["high"] = categorized["high"] + [e_usage[i]]
+        categorized["high"].append(e_usage[i])
         high_count+=1
     total +=e_usage[i]
 

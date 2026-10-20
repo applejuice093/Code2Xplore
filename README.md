@@ -37,6 +37,12 @@ File names contain spaces, so keep the quotes. `City Analyzer.py` also needs pan
 pip install -r requirements.txt
 ```
 
+Input notes:
+
+- **Day 3** and **Day 4** ask for an admin/user name first; the challenge expects `Aniket`, anything else prints "Wrong Admin name" / "Wrong Username.".
+- Numeric prompts (counts, weights, energy usage) expect whole numbers. A count below 1 or a non-numeric value stops the script with a short message instead of a traceback; non-numeric marks (Day 3), durations (Day 6) and ages (Day 1) are reported as invalid.
+- **Day 8** and **Day 9** take no input. Day 8 uses random data, so its output changes on every run.
+
 ## 🧪 Tests
 
 ```bash
@@ -44,7 +50,8 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
-The tests feed sample input to each script and check its output.
+- `tests/test_scripts.py` runs each script with sample stdin and checks its output, including bad-input cases.
+- `tests/test_units.py` imports the Day 8 and Day 9 scripts and unit-tests their functions (the City Analyzer tests are skipped if pandas is not installed).
 
 ## Task 1: User Profile Validation System
 ```

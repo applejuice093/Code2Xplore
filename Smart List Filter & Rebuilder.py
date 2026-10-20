@@ -16,7 +16,7 @@ if admin==user:
         if ele.lstrip("-").isdigit() and ele.count("-") <= 1 and not ele.endswith("-"):
             number_list[numbersCount]=int(ele)
             numbersCount+=1
-        elif (ele=="") or (ele==" "):
+        elif ele.strip() == "":  # skip blank / whitespace-only entries
             continue
         else:
             string_list[stringCount]=ele
@@ -26,7 +26,7 @@ if admin==user:
     print("Strings List:", string_list[:stringCount])
 
     print("Total Numbers:",numbersCount)
-    print("Total Strings",stringCount)
+    print("Total Strings:",stringCount)
 
     print("After Personalization:")
 
@@ -36,8 +36,10 @@ if admin==user:
         print("Strings List:", string_list[1:stringCount])
     else:
         print("Last element is removed")
-        print("Numbers List:", number_list[:numbersCount-1])
-        print("Strings List:", string_list[:stringCount-1])
+        # max(..., 0) stops an empty list from slicing to [:-1], which would
+        # print the unused "" placeholder slots instead of [].
+        print("Numbers List:", number_list[:max(numbersCount-1, 0)])
+        print("Strings List:", string_list[:max(stringCount-1, 0)])
 else:
     print("Wrong Username.")
 

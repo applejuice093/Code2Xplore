@@ -74,3 +74,75 @@ def test_city_analyzer():
     r = run("City Analyzer.py", "")
     assert r.returncode == 0, r.stderr
     assert "System Decision:" in r.stdout
+
+
+# --- input validation regressions ---------------------------------------------
+
+@pytest.mark.parametrize("email,expected", [
+    ("a@@uni.edu", "REJECTED"),   # two '@'
+    ("a@.edu", "REJECTED"),       # no real domain
+    ("me.edu", "REJECTED"),       # no '@' at all
+])
+def test_registration_email_rules(email, expected):
+    r = run("Smart Registration System.py", f"CSE-123\n{email}\nSecret123\nREF12x@\n")
+    assert r.returncode == 0, r.stderr
+    assert r.stdout.strip().endswith(expected)
+
+
+@pytest.mark.parametrize("email,age", [
+    ("a.b@c", "25"),        # no dot in the domain
+    ("a@@x.com", "25"),     # two '@'
+    ("jane@x.com", "abc"),  # non-numeric age used to crash
+])
+def test_profile_invalid_inputs(email, age):
+    r = run("User Profile Validation System.py", f"Jane Doe\n{email}\n9876543210\n{age}\n")
+    assert r.returncode == 0, r.stderr
+    assert r.stdout.strip().endswith("User Profile is INVALID")
+
+
+def test_performance_non_numeric_mark_is_invalid():
+    r = run("Student Performance Analyzer.py", "Aniket\n2\n95\nabc\n")
+    assert r.returncode == 0, r.stderr
+    assert "abc -> Invalid" in r.stdout
+    assert "Total Invalid Students: 1" in r.stdout
+
+
+def test_performance_negative_count_exits_cleanly():
+    r = run("Student Performance Analyzer.py", "Aniket\n-2\n")
+    assert "at least 1" in r.stderr and "Traceback" not in r.stderr
+
+
+def test_list_filter_empty_list_after_personalization():
+    r = run("Smart List Filter & Rebuilder.py", "Aniket\n3\na\nb\nc\n")
+    assert r.returncode == 0, r.stderr
+    after = r.stdout.split("After Personalization:")[1]
+    assert "Numbers List: []" in after   # used to print ['', '']
+
+
+def test_list_filter_whitespace_entry_is_skipped():
+    r = run("Smart List Filter & Rebuilder.py", "Aniket\n2\n   \nb\n")
+    assert "Total Strings: 1" in r.stdout
+
+
+@pytest.mark.parametrize("script,stdin", [
+    ("Smart Transport Load Balancing System.py", "2\n5\nx\n"),
+    ("Smart Transport Load Balancing System.py", "0\n"),
+    ("Smart Campus Energy Analyzer.py", "2\n10\nabc\n"),
+    ("Smart Playlist Intelligence System.py", "two\n"),
+])
+def test_bad_numeric_input_exits_without_traceback(script, stdin):
+    r = run(script, stdin)
+    assert r.returncode != 0
+    assert "Traceback" not in r.stderr and r.stderr.strip()
+
+
+def test_playlist_non_numeric_duration_is_invalid():
+    r = run("Smart Playlist Intelligence System.py", "2\n100\n3:20\n")
+    assert r.returncode == 0, r.stderr
+    assert "Invalid Song duration" in r.stdout
+
+
+def test_replication_reports_secure_count():
+    r = run("Multi-Level Data Replication & Integrity Analyzer.py", "")
+    assert r.returncode == 0, r.stderr
+    assert "tuple -> (2, 0," in r.stdout   # both records leaked, none secure
