@@ -1,15 +1,24 @@
 admin="Aniket"
 name = input("Enter Admin Name:")
 if name == admin:
-    N = int(input("Enter number of Students:"))
+    count_text = input("Enter number of Students:").strip()
+    if not count_text.isdigit() or int(count_text) == 0:
+        raise SystemExit("Number of students must be a whole number of at least 1.")
+    N = int(count_text)
     marks = [0] * N
     valid = 0
     fail = 0
 
     for i in range(N):
-        marks[i] = int(input(f"Enter mark {i+1}:"))
+        entry = input(f"Enter mark {i+1}:").strip()
+        try:
+            marks[i] = int(entry)
+        except ValueError:
+            marks[i] = entry  # non-numeric marks are reported as Invalid below
     for mark in marks:
-        if 90 <= mark <= 100:
+        if not isinstance(mark, int):
+            print(mark, "-> Invalid")
+        elif 90 <= mark <= 100:
             valid += 1
             print(mark, "-> Excellent")
         elif 75 <= mark <= 89:
