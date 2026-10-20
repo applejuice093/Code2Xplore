@@ -16,7 +16,7 @@ if admin==user:
         if ele.lstrip("-").isdigit() and ele.count("-") <= 1 and not ele.endswith("-"):
             number_list[numbersCount]=int(ele)
             numbersCount+=1
-        elif (ele=="") or (ele==" "):
+        elif ele.strip() == "":  # skip blank / whitespace-only entries
             continue
         else:
             string_list[stringCount]=ele
@@ -26,7 +26,7 @@ if admin==user:
     print("Strings List:", string_list[:stringCount])
 
     print("Total Numbers:",numbersCount)
-    print("Total Strings",stringCount)
+    print("Total Strings:",stringCount)
 
     print("After Personalization:")
 
