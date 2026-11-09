@@ -141,7 +141,7 @@ if __name__ == "__main__":
     zone_categories = classify_zones(raw_data)
     print("Categorized Zones:")
     for category, zones in zone_categories.items():
-        print(f"{category}: {list(zones) if zones else 'None'}")
+        print(f"{category}: {sorted(zones) if zones else 'None'}")
     print("\n")
     
     processed_data = apply_personalized_rule(raw_data, MY_ROLL_NUMBER)
