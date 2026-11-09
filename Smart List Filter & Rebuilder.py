@@ -16,8 +16,9 @@ if admin==user:
     stringCount=0
     for ele in combine_list:
         # Accept negative integers too ("-5" is a number, not a string).
-        if ele.lstrip("-").isdigit() and ele.count("-") <= 1 and not ele.endswith("-"):
-            number_list[numbersCount]=int(ele)
+        num=ele.strip()  # " 7 " is still the number 7
+        if num.lstrip("-").isdigit() and num.count("-") <= 1 and not num.endswith("-"):
+            number_list[numbersCount]=int(num)
             numbersCount+=1
         elif ele.strip() == "":  # skip blank / whitespace-only entries
             continue

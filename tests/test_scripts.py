@@ -148,3 +148,10 @@ def test_replication_reports_secure_count():
     r = run("Multi-Level Data Replication & Integrity Analyzer.py", "")
     assert r.returncode == 0, r.stderr
     assert "tuple -> (2, 0," in r.stdout   # both records leaked, none secure
+
+
+def test_list_filter_padded_number_counts_as_number():
+    r = run("Smart List Filter & Rebuilder.py", "Aniket\n2\n 7 \nx\n")
+    assert r.returncode == 0, r.stderr
+    assert "Numbers List: [7]" in r.stdout
+    assert "Total Strings: 1" in r.stdout
