@@ -63,7 +63,8 @@ def check_integrity(pure_db, current_root, s_copy):
     secure_flags = 0
     
     for i in range(len(pure_db)):
-        if pure_db[i] != current_root[i]:
+        # A record that disappeared from the root counts as corrupted too.
+        if i >= len(current_root) or pure_db[i] != current_root[i]:
             leak_flags += 1
             print(f"WARNING: Corruption at ID {pure_db[i]['id']}")
         else:

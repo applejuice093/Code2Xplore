@@ -41,7 +41,9 @@ Input notes:
 
 - **Day 3** and **Day 4** ask for an admin/user name first; the challenge expects `Aniket`, anything else prints "Wrong Admin name" / "Wrong Username.".
 - Numeric prompts (counts, weights, energy usage) expect whole numbers. A count below 1 or a non-numeric value stops the script with a short message instead of a traceback; non-numeric marks (Day 3), durations (Day 6) and ages (Day 1) are reported as invalid.
-- **Day 8** and **Day 9** take no input. Day 8 uses random data, so its output changes on every run.
+- **Day 4** treats an element as a number when it is a whole number, optionally negative and with surrounding spaces (`-5`, ` 7 `); everything else non-blank is a string, and blank entries are skipped.
+- Email checks (Day 1 and Day 2) also reject adjacent dots, such as `jane@mail..com`.
+- **Day 8** and **Day 9** take no input. Day 8 uses random data, so its output changes on every run. Its "rising AQI" and "consecutive high-risk clusters" are worked out in zone-number order, so they mean neighbouring zones even after the personalised sort or shuffle.
 
 ## 🧪 Tests
 

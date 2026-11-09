@@ -1,7 +1,10 @@
 admin="Aniket"
 user=str(input("Enter Username:"))
 if admin==user:
-    N=int(input("Enter Number of elements:"))
+    count_text=input("Enter Number of elements:").strip()
+    if not count_text.isdigit() or int(count_text)==0:
+        raise SystemExit("Number of elements must be a whole number of at least 1.")
+    N=int(count_text)
     combine_list=[""]*N
     number_list=[""]*N
     string_list=[""]*N
@@ -13,8 +16,9 @@ if admin==user:
     stringCount=0
     for ele in combine_list:
         # Accept negative integers too ("-5" is a number, not a string).
-        if ele.lstrip("-").isdigit() and ele.count("-") <= 1 and not ele.endswith("-"):
-            number_list[numbersCount]=int(ele)
+        num=ele.strip()  # " 7 " is still the number 7
+        if num.lstrip("-").isdigit() and num.count("-") <= 1 and not num.endswith("-"):
+            number_list[numbersCount]=int(num)
             numbersCount+=1
         elif ele.strip() == "":  # skip blank / whitespace-only entries
             continue

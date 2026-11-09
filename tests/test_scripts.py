@@ -82,6 +82,8 @@ def test_city_analyzer():
     ("a@@uni.edu", "REJECTED"),   # two '@'
     ("a@.edu", "REJECTED"),       # no real domain
     ("me.edu", "REJECTED"),       # no '@' at all
+    ("me@uni..edu", "REJECTED"),  # adjacent dots
+    ("me..x@uni.edu", "REJECTED"),
 ])
 def test_registration_email_rules(email, expected):
     r = run("Smart Registration System.py", f"CSE-123\n{email}\nSecret123\nREF12x@\n")
@@ -93,6 +95,7 @@ def test_registration_email_rules(email, expected):
     ("a.b@c", "25"),        # no dot in the domain
     ("a@@x.com", "25"),     # two '@'
     ("jane@x.com", "abc"),  # non-numeric age used to crash
+    ("jane@mail..com", "25"),  # adjacent dots
 ])
 def test_profile_invalid_inputs(email, age):
     r = run("User Profile Validation System.py", f"Jane Doe\n{email}\n9876543210\n{age}\n")
@@ -129,6 +132,8 @@ def test_list_filter_whitespace_entry_is_skipped():
     ("Smart Transport Load Balancing System.py", "0\n"),
     ("Smart Campus Energy Analyzer.py", "2\n10\nabc\n"),
     ("Smart Playlist Intelligence System.py", "two\n"),
+    ("Smart List Filter & Rebuilder.py", "Aniket\nthree\n"),
+    ("Smart List Filter & Rebuilder.py", "Aniket\n0\n"),
 ])
 def test_bad_numeric_input_exits_without_traceback(script, stdin):
     r = run(script, stdin)
@@ -146,3 +151,17 @@ def test_replication_reports_secure_count():
     r = run("Multi-Level Data Replication & Integrity Analyzer.py", "")
     assert r.returncode == 0, r.stderr
     assert "tuple -> (2, 0," in r.stdout   # both records leaked, none secure
+
+
+def test_list_filter_padded_number_counts_as_number():
+    r = run("Smart List Filter & Rebuilder.py", "Aniket\n2\n 7 \nx\n")
+    assert r.returncode == 0, r.stderr
+    assert "Numbers List: [7]" in r.stdout
+    assert "Total Strings: 1" in r.stdout
+
+
+def test_energy_categories_and_average():
+    r = run("Smart Campus Energy Analyzer.py", "3\n10\n100\n-4\n")
+    assert r.returncode == 0, r.stderr
+    assert "'efficient': [10], 'moderate': [100], 'high': [], 'invalid': [-4]" in r.stdout
+    assert "Avg Usage: 35.33" in r.stdout   # rounded, not 35.333333333333336
