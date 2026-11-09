@@ -11,7 +11,7 @@ if len(sid) != 7 or not sid.startswith("CSE-") or not sid[4:].isdigit():
 #email validation
 # Exactly one '@' with a non-empty name before it and a domain ending in .edu after it.
 if (not email) or (email[0]=='@') or (email[0]=='.') or (email.count('@') != 1) or (email.count(' ') != 0) \
-        or (not email.endswith('.edu')) or (email.split('@')[1] in ('', '.edu')) or email.split('@')[1].startswith('.'):
+        or (not email.endswith('.edu')) or (email.split('@')[1] in ('', '.edu')) or email.split('@')[1].startswith('.') or ('..' in email):
     valid=False
 #password validation: >= 8 chars, at least one digit, starts with an uppercase letter
 has_digit=any(ch in "0123456789" for ch in passwd)

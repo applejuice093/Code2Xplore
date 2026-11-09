@@ -82,6 +82,8 @@ def test_city_analyzer():
     ("a@@uni.edu", "REJECTED"),   # two '@'
     ("a@.edu", "REJECTED"),       # no real domain
     ("me.edu", "REJECTED"),       # no '@' at all
+    ("me@uni..edu", "REJECTED"),  # adjacent dots
+    ("me..x@uni.edu", "REJECTED"),
 ])
 def test_registration_email_rules(email, expected):
     r = run("Smart Registration System.py", f"CSE-123\n{email}\nSecret123\nREF12x@\n")
@@ -93,6 +95,7 @@ def test_registration_email_rules(email, expected):
     ("a.b@c", "25"),        # no dot in the domain
     ("a@@x.com", "25"),     # two '@'
     ("jane@x.com", "abc"),  # non-numeric age used to crash
+    ("jane@mail..com", "25"),  # adjacent dots
 ])
 def test_profile_invalid_inputs(email, age):
     r = run("User Profile Validation System.py", f"Jane Doe\n{email}\n9876543210\n{age}\n")
