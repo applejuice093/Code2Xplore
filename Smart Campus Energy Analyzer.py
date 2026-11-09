@@ -60,4 +60,4 @@ for i in range(len(summary)):
 
 print("Maximum Usage:",max_e)
 print("Minimum Usage:",min_e)
-print("Avg Usage:",avg_e)
+print("Avg Usage:",round(avg_e, 2))

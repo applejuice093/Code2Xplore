@@ -158,3 +158,10 @@ def test_list_filter_padded_number_counts_as_number():
     assert r.returncode == 0, r.stderr
     assert "Numbers List: [7]" in r.stdout
     assert "Total Strings: 1" in r.stdout
+
+
+def test_energy_categories_and_average():
+    r = run("Smart Campus Energy Analyzer.py", "3\n10\n100\n-4\n")
+    assert r.returncode == 0, r.stderr
+    assert "'efficient': [10], 'moderate': [100], 'high': [], 'invalid': [-4]" in r.stdout
+    assert "Avg Usage: 35.33" in r.stdout   # rounded, not 35.333333333333336
