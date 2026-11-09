@@ -129,6 +129,8 @@ def test_list_filter_whitespace_entry_is_skipped():
     ("Smart Transport Load Balancing System.py", "0\n"),
     ("Smart Campus Energy Analyzer.py", "2\n10\nabc\n"),
     ("Smart Playlist Intelligence System.py", "two\n"),
+    ("Smart List Filter & Rebuilder.py", "Aniket\nthree\n"),
+    ("Smart List Filter & Rebuilder.py", "Aniket\n0\n"),
 ])
 def test_bad_numeric_input_exits_without_traceback(script, stdin):
     r = run(script, stdin)

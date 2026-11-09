@@ -1,7 +1,10 @@
 admin="Aniket"
 user=str(input("Enter Username:"))
 if admin==user:
-    N=int(input("Enter Number of elements:"))
+    count_text=input("Enter Number of elements:").strip()
+    if not count_text.isdigit() or int(count_text)==0:
+        raise SystemExit("Number of elements must be a whole number of at least 1.")
+    N=int(count_text)
     combine_list=[""]*N
     number_list=[""]*N
     string_list=[""]*N
