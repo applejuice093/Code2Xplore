@@ -132,3 +132,20 @@ def test_decision_high_alert_from_cluster(city, capsys):
     out = capsys.readouterr().out
     assert "(1, 2)" in out
     assert "np." not in out  # no np.float64(...)/np.int64(...) reprs in the report
+
+
+def test_clusters_use_zone_order_not_row_order(city, capsys):
+    import pandas as pd
+    # Rows arrive sorted by traffic (as Rule B does); zones 1 and 3 are high risk
+    # but not neighbours, while zones 2 and 3 are.
+    df = pd.DataFrame([zone(1, 85, 10, 0), zone(4, 5, 10, 0), zone(3, 90, 10, 0), zone(2, 95, 10, 0)])
+    city.analyze_and_detect_patterns(df)
+    out = capsys.readouterr().out
+    assert "clusters found: [(1, 2), (2, 3)]" in out
+
+
+def test_analyze_does_not_mutate_input(city):
+    import pandas as pd
+    df = pd.DataFrame([zone(i, 10, 10, 10) for i in range(1, 4)])
+    city.analyze_and_detect_patterns(df)
+    assert list(df.columns) == ["zone", "traffic", "air_quality", "energy"]

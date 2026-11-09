@@ -77,6 +77,7 @@ def analyze_and_detect_patterns(df):
     print("Matrix averages:")
     print(f"Traffic: {means[0]:.2f}, AQI: {means[1]:.2f}, Energy: {means[2]:.2f}\n")
 
+    df = df.copy()  # don't add helper columns to the caller's DataFrame
     df['raw_risk'] = (df['traffic'] * 0.4) + (df['air_quality'] * 0.4) + (df['energy'] * 0.2)
     df['risk_score'] = df['raw_risk'].apply(math.sqrt)
     
@@ -97,6 +98,9 @@ def analyze_and_detect_patterns(df):
         
     top_3_zones = [int(z['zone']) for z in risk_list[:3]]
 
+    # "Rising AQI" and "consecutive clusters" are about neighbouring zones, so
+    # look at the zones in id order, not the shuffled/sorted order from Rule A/B.
+    df = df.sort_values('zone').reset_index(drop=True)
     df['aqi_rising'] = df['air_quality'].diff() > 0
     multi_factor_zones = df[(df['risk_score'] > avg_risk) & df['aqi_rising']]['zone'].tolist()
     
