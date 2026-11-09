@@ -59,6 +59,14 @@ def test_modify_data_odd_even_roll(rep, roll, files):
     assert len(root) == 2 and len(shallow) == 3   # appended record does not
 
 
+def test_integrity_missing_record_is_a_leak(rep):
+    root = rep.generate_data()
+    snapshot = copy.deepcopy(root)
+    root.pop()
+    leaks, secure, _ = rep.check_integrity(snapshot, root, root)
+    assert (leaks, secure) == (1, 1)
+
+
 # --- Day 8: City Analyzer -----------------------------------------------------
 
 @pytest.fixture(scope="module")
